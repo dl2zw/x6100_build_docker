@@ -1,0 +1,14 @@
+version: '3.8'
+
+services:
+  ubuntu-x6100:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: ubuntu-x6100
+    container_name: ubuntu-x6100
+    tty: true
+    stdin_open: true
+    working_dir: /home/x6100/build
+    volumes:
+      - ./x6100:/home/x6100/build
