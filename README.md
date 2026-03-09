@@ -38,16 +38,16 @@ This will switch to the container, and you should now see a prompt similar to:
 ```
 git clone --recurse-submodules https://github.com/gdyuldin/AetherX6100Buildroot.git
 ```
-- Now you need to make one change to create the latest version of the R1CBU/R2RFE firmware, currently `V0.32.2` (ugly workaround..).
+- Now you need to make one change to create the latest version of the R1CBU/R2RFE firmware, currently `V0.33.0` (ugly workaround..).
 ```
-sed -i "s,^X6100_GUI_VERSION = v0.23.0-rc.3,X6100_GUI_VERSION = v0.32.2,g" AetherX6100Buildroot/br2_external/package/x6100-gui/x6100_gui.mk
+sed -i "s,^X6100_GUI_VERSION = v0.23.0-rc.3,X6100_GUI_VERSION = v0.33.0,g" AetherX6100Buildroot/br2_external/package/x6100-gui/x6100_gui.mk
 ```
 > [!NOTE]
 For future versions, you will need to adjust the command instead of  
-_sed -i "s,^X6100_GUI_VERSION = v0.23.0-rc.3,X6100_GUI_VERSION = `v0.32.2`,g" AetherX6100Buildroot/br2_external/package/x6100-gui/x6100_gui.mk_  
-use  
 _sed -i "s,^X6100_GUI_VERSION = v0.23.0-rc.3,X6100_GUI_VERSION = `v0.33.0`,g" AetherX6100Buildroot/br2_external/package/x6100-gui/x6100_gui.mk_  
-e.g. for Version 0.33.0
+use  
+_sed -i "s,^X6100_GUI_VERSION = v0.23.0-rc.3,X6100_GUI_VERSION = `v0.34.0`,g" AetherX6100Buildroot/br2_external/package/x6100-gui/x6100_gui.mk_  
+e.g. for Version 0.34.0
 
 - Change to the buildroot directory:
 ```
@@ -80,7 +80,7 @@ It will take a while...
 When compilation is complete you need to revert the change to create the latest version of the R1CBU/R2RFE firmware (ugly workaround..)
 ```
 cd ../..
-sed -i "s,^X6100_GUI_VERSION = v0.32.2,X6100_GUI_VERSION = v0.23.0-rc.3,g" AetherX6100Buildroot/br2_external/package/x6100-gui/x6100_gui.mk
+sed -i "s,^X6100_GUI_VERSION = v0.33.0,X6100_GUI_VERSION = v0.23.0-rc.3,g" AetherX6100Buildroot/br2_external/package/x6100-gui/x6100_gui.mk
 ```
 
 - Then change back to your `xiegu` directory:
