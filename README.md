@@ -38,6 +38,15 @@ This will switch to the container, and you should now see a prompt similar to:
 ```
 git clone --recurse-submodules https://github.com/gdyuldin/AetherX6100Buildroot.git
 ```
+
+- If you already have checkout the AetherX6100Buildroot use `git pull` to update if changes have been made:   
+You should keep an eye on `https://github.com/gdyuldin/AetherX6100Buildroot/commits/master/`
+```
+cd AetherX6100Buildroot
+git pull
+cd ..
+```
+
 - Now you need to make one change to create the latest version of the R1CBU/R2RFE firmware, currently `V0.33.4` (ugly workaround..).
 ```
 sed -i "s,^X6100_GUI_VERSION = v0.23.0-rc.3,X6100_GUI_VERSION = v0.33.4,g" AetherX6100Buildroot/br2_external/package/x6100-gui/x6100_gui.mk
@@ -87,6 +96,10 @@ sed -i "s,^X6100_GUI_VERSION = v0.33.4,X6100_GUI_VERSION = v0.23.0-rc.3,g" Aethe
 - Then change back to your `xiegu` directory:
 ```
 exit
+```
+- Then stop the docker container:
+```
+docker compose down
 ```
 
 - You should find the file `sdcard.img` in the directory `x6100/AetherX6100Buildroot/build/images` which you can then copy to an SD card (under /dev/sdX) e.g.
