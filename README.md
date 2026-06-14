@@ -47,16 +47,16 @@ git pull
 cd ..
 ```
 
-- Now you need to make one change to create the latest version of the R1CBU/R2RFE firmware, currently `V0.33.4` (ugly workaround..).
+- Now you need to make one change to create the latest version of the R1CBU/R2RFE firmware, currently `V0.34.0` (ugly workaround..).
 ```
-sed -i "s,^X6100_GUI_VERSION = v0.23.0-rc.3,X6100_GUI_VERSION = v0.33.4,g" AetherX6100Buildroot/br2_external/package/x6100-gui/x6100_gui.mk
+sed -i "s,^X6100_GUI_VERSION = v0.23.0-rc.3,X6100_GUI_VERSION = v0.34.0,g" AetherX6100Buildroot/br2_external/package/x6100-gui/x6100_gui.mk
 ```
 > [!NOTE]
 For future versions, you will need to adjust the command instead of  
-_sed -i "s,^X6100_GUI_VERSION = v0.23.0-rc.3,X6100_GUI_VERSION = `v0.33.4`,g" AetherX6100Buildroot/br2_external/package/x6100-gui/x6100_gui.mk_  
-use  
 _sed -i "s,^X6100_GUI_VERSION = v0.23.0-rc.3,X6100_GUI_VERSION = `v0.34.0`,g" AetherX6100Buildroot/br2_external/package/x6100-gui/x6100_gui.mk_  
-e.g. for Version 0.34.0
+use  
+_sed -i "s,^X6100_GUI_VERSION = v0.23.0-rc.3,X6100_GUI_VERSION = `v0.35.0`,g" AetherX6100Buildroot/br2_external/package/x6100-gui/x6100_gui.mk_  
+e.g. for Version 0.35.0
 
 - Change to the buildroot directory:
 ```
@@ -70,6 +70,8 @@ cd AetherX6100Buildroot
 ```
 cd build
 ```
+> [!NOTE]
+The next two console commands only need to be entered the first time to build the toolchain, after that, simply running `make` is sufficient.
 - Run the following console command:
 ```
 make lame mpg123
@@ -90,7 +92,7 @@ When compilation is complete you need to revert the change to create the latest 
 So you can still use again `git pull` to update the AetherX6100Buildroot if changes have been made.
 ```
 cd ../..
-sed -i "s,^X6100_GUI_VERSION = v0.33.4,X6100_GUI_VERSION = v0.23.0-rc.3,g" AetherX6100Buildroot/br2_external/package/x6100-gui/x6100_gui.mk
+sed -i "s,^X6100_GUI_VERSION = v0.34.0,X6100_GUI_VERSION = v0.23.0-rc.3,g" AetherX6100Buildroot/br2_external/package/x6100-gui/x6100_gui.mk
 ```
 
 - Then change back to your `xiegu` directory:
@@ -105,6 +107,7 @@ docker compose down
 - You should find the file `sdcard.img` in the directory `x6100/AetherX6100Buildroot/build/images` which you can then copy to an SD card (under /dev/sdX) e.g.
 ```
 sudo dd if=x6100/AetherX6100Buildroot/build/images/sdcard.img of=/dev/sdX bs=8M
+sync
 sudo eject /dev/sdX
 ```
 
