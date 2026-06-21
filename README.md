@@ -113,11 +113,14 @@ sudo eject /dev/sdX
 
 > [!NOTE]
 It may happen that the SD card does not boot on newer x6100 devices because the bootloader u-boot is not executed. I have created a version that **_should_** boot on all x6100 devices.  
-This can be replaced with the following console command:
+This can be replaced in the sdcard.img with the following console command:
 ```
 dd if=x6100_build_docker/u-boot.bin of=x6100/AetherX6100Buildroot/build/images/sdcard.img seek=8K bs=1 conv=notrunc
 ```
-
+Even if the image is already on the SD card, you can replace it directly there:
+```
+dd if=x6100_build_docker/u-boot.bin of=/dev/sdX bs=1024 seek=8
+```
 ## Credits
 
 - Олег Белоусов (Oleg Belusov) R1CBU
