@@ -1,14 +1,30 @@
-version: '3.8'
-
 services:
-  ubuntu-x6100:
+  x6100-builder:
     build:
       context: .
       dockerfile: Dockerfile
-    image: ubuntu-x6100
-    container_name: ubuntu-x6100
-    tty: true
-    stdin_open: true
-    working_dir: /home/x6100/build
+      args:
+        # Your Host-UID/GID
+        HOST_UID: ${HOST_UID:-1000}
+        HOST_GID: ${HOST_GID:-1000}
+    image: x6100-builder
+    container_name: x6100-builder
+    # Volumes
     volumes:
-      - ./x6100:/home/x6100/build
+      # Source + Build-Output (Repos + Images)
+      - ${HOST_BUILD_DIR:-./data}:/home/build
+      # Buildroot Ccache
+      - x6100-ccache:/home/builder/.buildroot-ccache
+    environment:
+      - GUI_REPO=${GUI_REPO:-https://github.com/gdyuldin/x6100_gui.git}
+      - GUI_BRANCH=${GUI_BRANCH:-v1.0.0}
+      - BR_REPO=${BR_REPO:-https://github.com/gdyuldin/AetherX6100Buildroot.git}
+      - BR_BRANCH=${BR_BRANCH:-master}
+      - IMAGE_TAG=${IMAGE_TAG:-v1.0.0}
+      - BR2_CCACHE_DIR=/home/builder/.buildroot-ccache
+    # Shared Memory for parallele Compiles
+    shm_size: "2gb"
+
+volumes:
+  x6100-ccache:
+    name: x6100-ccache
