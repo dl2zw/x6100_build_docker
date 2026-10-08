@@ -100,7 +100,7 @@ echo ">>> Erase x6100_gui Package-Builddirectory ..."
 rm -rf "${BR_DIR}/build/build/x6100-gui-"* 2>/dev/null || true
 
 if [ ! -f "${FIRST_BUILD_MARKER}" ]; then
-  echo ">>> Erster Build: make lame / mpg123 / libsndfile-dirclean / make ..."
+  echo ">>> First Build: make lame / mpg123 / libsndfile-dirclean / make ..."
   make lame
   make mpg123
   make libsndfile-dirclean
@@ -119,22 +119,7 @@ sed -i "s|^X6100_GUI_SITE_METHOD = local|X6100_GUI_SITE_METHOD = git|g" "${MK}"
 sed -i "s|^# X6100_GUI_GIT_SUBMODULES|X6100_GUI_GIT_SUBMODULES|g" "${MK}"
 echo ""
 
-# --- 6. U-Boot ---
-echo ">>> Replace u-boot in sdcard.img ..."
-UBOOT_BIN="${GUI_DIR}/u-boot/u-boot-sunxi-with-spl.bin"
-SDCARD="${BR_DIR}/build/images/sdcard.img"
-if [ ! -f "${UBOOT_BIN}" ]; then
-  echo "ERROR: ${UBOOT_BIN} not found"
-  exit 1
-fi
-if [ ! -f "${SDCARD}" ]; then
-  echo "ERROR: ${SDCARD} not found"
-  exit 1
-fi
-dd if="${UBOOT_BIN}" of="${SDCARD}" seek=8K bs=1 conv=notrunc
-echo ""
-
-# --- 7. Image ---
+# --- 6. Image ---
 echo ">>> Compress image ..."
 cd "${BR_DIR}/build/images"
 OUT_NAME="sdcard.${IMAGE_TAG}.img"
