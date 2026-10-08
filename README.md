@@ -75,6 +75,10 @@ Even if the image is already on the SD card, you can replace it directly there:
 ```
 dd if=u-boot.bin of=/dev/sdX bs=1024 seek=8
 ```
+
+> [!NOTE]
+Even if the image boots from an SD card, you can use the commands described above to update u-boot and switch from the older version to the current one.
+
 ## Credits
 
 - Олег Белоусов (Oleg Belusov) R1CBU
