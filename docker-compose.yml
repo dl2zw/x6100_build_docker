@@ -16,11 +16,14 @@ services:
       # Buildroot Ccache
       - x6100-ccache:/home/builder/.buildroot-ccache
     environment:
-      - GUI_REPO=${GUI_REPO:-https://github.com/gdyuldin/x6100_gui.git}
-      - GUI_BRANCH=${GUI_BRANCH:-v1.0.0}
-      - BR_REPO=${BR_REPO:-https://github.com/gdyuldin/AetherX6100Buildroot.git}
+      - ENABLE_UBOOT=${ENABLE_UBOOT:-0}
+      - ENABLE_MC=${ENABLE_MC:-0}
+      - ENABLE_PROCPS_NG=${ENABLE_PROCPS_NG:-0}
+      - GUI_REPO=${GUI_REPO:-https://github.com/OpenX6100/x6100_gui.git}
+      - GUI_BRANCH=${GUI_BRANCH:-v1.0.2}
+      - BR_REPO=${BR_REPO:-https://github.com/OpenX6100/AetherX6100Buildroot.git}
       - BR_BRANCH=${BR_BRANCH:-master}
-      - IMAGE_TAG=${IMAGE_TAG:-v1.0.0}
+      - IMAGE_TAG=${IMAGE_TAG:-v1.0.2}
       - BR2_CCACHE_DIR=/home/builder/.buildroot-ccache
     # Shared Memory for parallele Compiles
     shm_size: "2gb"
