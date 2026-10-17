@@ -85,7 +85,7 @@ echo ""
 echo ">>> Patch x6100_gui.mk → local source ..."
 MK="${BR_DIR}/br2_external/package/x6100-gui/x6100_gui.mk"
 sed -i "s|^X6100_GUI_VERSION = v0.23.0-rc.3|X6100_GUI_VERSION = ${GUI_BRANCH}|g" "${MK}"
-sed -i "s|https://github.com/gdyuldin/x6100_gui|${GUI_DIR}|g" "${MK}"
+sed -i "s|https://github.com/OpenX6100/x6100_gui|${GUI_DIR}|g" "${MK}"
 sed -i "s|^X6100_GUI_SITE_METHOD = git|X6100_GUI_SITE_METHOD = local|g" "${MK}"
 sed -i "s|^X6100_GUI_GIT_SUBMODULES|# X6100_GUI_GIT_SUBMODULES|g" "${MK}"
 echo ">>> Patch ok"
@@ -163,7 +163,7 @@ fi
 
 # --- GUI-Package back to original Path for successful git pull ---
 sed -i "s|^X6100_GUI_VERSION = ${GUI_BRANCH}|X6100_GUI_VERSION = v0.23.0-rc.3|g" "${MK}"
-sed -i "s|${GUI_DIR}|https://github.com/gdyuldin/x6100_gui|g" "${MK}"
+sed -i "s|${GUI_DIR}|https://github.com/OpenX6100/x6100_gui|g" "${MK}"
 sed -i "s|^X6100_GUI_SITE_METHOD = local|X6100_GUI_SITE_METHOD = git|g" "${MK}"
 sed -i "s|^# X6100_GUI_GIT_SUBMODULES|X6100_GUI_GIT_SUBMODULES|g" "${MK}"
 echo ""
