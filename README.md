@@ -49,15 +49,16 @@ export GUI_BRANCH=v1.0.0                     # e.g. for a previous or own releas
 export IMAGE_TAG=v1.0.0                      # e.g. for a previous or own release
 export BR_REPO=<your_other_repo>             # Replace <your_other_repo> with your preferred buildroot repository
 export GUI_REPO=<your_other_repo>            # Replace <your_other_repo> with your preferred x6100_gui repository
+export UBOOT_BRANCH=2026.10                  # e.g. for uboot version 2026.10, it must be a version >=2025.10
 ```
 
-The standard and current version is `GUI_BRANCH=v1.0.2, IMAGE_TAG=v1.0.2, BR_REPO=https://github.com/OpenX6100/AetherX6100Buildroot.git, GUI_REPO=https://github.com/OpenX6100/x6100_gui.git`.  
+The standard and current version is `GUI_BRANCH=v1.2.0, IMAGE_TAG=v1.2.0, BR_REPO=https://github.com/OpenX6100/AetherX6100Buildroot.git, GUI_REPO=https://github.com/OpenX6100/x6100_gui.git`.  
 The `export GUI_BRANCH=xxx` and `export IMAGE_TAG=xxx` you can always change for every new build to the latest or your preferred version.  
 You can also switch to another Repo for the buildroot with `export BR_REPO=<your_other_repo>` and for the gui `export GUI_REPO=<your_other_repo>` however, these should be based on the standard repos, otherwise the build might fail.
 
 - Optional switches, if you don't enable them with =1, they are disabled by default =0:
 ```
-export ENABLE_UBOOT=0/1      # Change the u-boot bootloader if you have a x6100 devices that won't boot or switch from the older version to the current one 
+export ENABLE_UBOOT=0/1      # Builds UBOOT_BRANCH=xxxx.yy version, it must be a version >=2025.10
 export ENABLE_MC=0/1         # Builds midnight commander
 export ENABLE_PROCPS_NG=0/1  # Builds procps-ng programs and uses them instead of the busybox programs
 ```
@@ -65,15 +66,16 @@ Then you can check your build configuration for the right Values using `docker c
 
 > [!NOTE]
 It may happen that the SD card does not boot on some x6100 devices because the bootloader u-boot is not executed.  
-I have created a version that **_should_** boot on all x6100 devices, i tested it with the second and third revisions, the second revision is causing the problems.  
+You can now enable a version **>=2025.10** that **_should_** boot on all x6100 devices, i tested it with the second and third revisions, the second revision is causing the problems.  
 This can be replaced in the sdcard.img with the following console command before the build command `docker compose up`:
 ```
 export ENABLE_UBOOT=1
+export UBOOT_BRANCH=xxxx.yy
 ```
-or with `ENABLE_UBOOT=1` in the .env File
+or with `ENABLE_UBOOT=1` and `UBOOT_BRANCH=xxxx.yy` in the .env File
 
 > [!NOTE]
-Even if the image boots from an SD card, you can use the commands described above to update u-boot and switch from the older version (2023.01) to the current (2026.10) one.
+Even if the image boots from an SD card, you can use the commands described above to update u-boot and switch from the older version (2023.01) to the current (e.g. 2026.10) one.
 
 
 - Build the AetherX6100Buildroot and x6100_gui with console output:
