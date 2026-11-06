@@ -3,10 +3,10 @@ set -euo pipefail
 
 WORKDIR="${WORKDIR:-/home/build}"
 GUI_REPO="${GUI_REPO:-https://github.com/OpenX6100/x6100_gui.git}"
-GUI_BRANCH="${GUI_BRANCH:-v1.1.0}"
+GUI_BRANCH="${GUI_BRANCH:-v1.2.0}"
 BR_REPO="${BR_REPO:-https://github.com/OpenX6100/AetherX6100Buildroot.git}"
 BR_BRANCH="${BR_BRANCH:-master}"
-IMAGE_TAG="${IMAGE_TAG:-v1.1.0}"
+IMAGE_TAG="${IMAGE_TAG:-v1.2.0}"
 UBOOT_BRANCH="${UBOOT_BRANCH:-2023.01}"
 BR2_CCACHE_DIR="${BR2_CCACHE_DIR:-/home/builder/.buildroot-ccache}"
 
