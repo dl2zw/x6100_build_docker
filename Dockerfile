@@ -42,6 +42,7 @@ RUN apt update && apt install -y --no-install-recommends \
     bison \
     flex \
     libssl-dev \
+    libgnutls28-dev \
     sudo \
     sqlite3 \
     && locale-gen en_US.UTF-8 \
